@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """
 Definition of class Auth
@@ -57,3 +56,19 @@ class Auth:
         Returns a User instance from information from a request object
         """
         return None
+
+    def session_cookie(self, request=None):
+        """
+        Returns a cookie value from a request.
+
+        Args:
+            request: request object
+
+        Returns:
+            Value of the _my_session_id cookie from the request object,
+            or None if the request is None or the cookie is not found.
+        """
+        if request is None:
+            return None
+        session_name = os.getenv('SESSION_NAME')
+        return request.cookies.get(session_name)
